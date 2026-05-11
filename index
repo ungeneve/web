@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United Geneve | Disaster Response</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <div class="placeholder-logo">UG</div>
+                <span class="brand-name">UNITED GENEVE</span>
+            </div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#operations">Operations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>For Disaster Response</h1>
+                <p>Global coordination. Immediate impact. Saving lives where it matters most.</p>
+                <button id="cta-btn">Latest Missions</button>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>Our Mission</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Rapid Deployment</h3>
+                    <p>Mobilizing specialized teams within hours of a disaster strike.</p>
+                </div>
+                <div class="card">
+                    <h3>Global Reach</h3>
+                    <p>Operating across 5 continents to provide humanitarian aid.</p>
+                </div>
+                <div class="card">
+                    <h3>Medical Support</h3>
+                    <p>Deploying emergency field hospitals and specialized medical staff.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 United Geneve for Disaster Response. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
