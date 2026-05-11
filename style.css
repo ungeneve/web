@@ -1,104 +1,16 @@
 :root {
-    --brand-dark: #0f172a;
-    --brand-blue: #2563eb;
-    --brand-red: #dc2626;
+    /* الأزرق الليلي: يعطي إحساساً بالسلطة والمصداقية */
+    --primary-deep: #0a192f; 
+    
+    /* أزرق الأمان: لون حديث ومريح للعين */
+    --accent-blue: #007aff; 
+    
+    /* الأحمر الطوارئ الهادئ: أحمر لا يزعج العين لكنه ينبه */
+    --emergency-red: #e63946; 
+    
+    /* تدرج الرمادي للمساحات البيضاء لتعطي عمق (Soft Gray) */
+    --bg-soft: #f8fafc;
+    
+    /* لون النص الأساسي (ليس أسود تماماً بل رمادي داكن جداً) */
     --text-main: #1e293b;
-    --text-muted: #64748b;
-    --white: #ffffff;
-    --glass: rgba(255, 255, 255, 0.7);
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #fcfcfd;
-    color: var(--text-main);
-    line-height: 1.6;
-}
-
-.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-
-/* Navbar - Pro Glassmorphism */
-.navbar {
-    position: fixed; width: 100%; top: 0; z-index: 1000;
-    padding: 1.25rem 0; transition: all 0.4s ease;
-    backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-
-.logo { display: flex; align-items: center; gap: 10px; }
-
-.logo-circle {
-    width: 40px; height: 40px; background: var(--brand-dark); color: white;
-    border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    font-weight: 800;
-}
-
-.logo-text { font-weight: 800; font-size: 1.2rem; color: var(--brand-dark); letter-spacing: -1px; }
-.logo-text span { color: var(--brand-blue); }
-
-.nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
-.nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.9rem; }
-
-.btn-cta-nav {
-    background: var(--brand-red); color: white !important;
-    padding: 10px 20px; border-radius: 8px; transition: transform 0.2s;
-}
-
-/* Hero Section */
-.hero {
-    height: 100vh; display: flex; align-items: center; position: relative;
-    overflow: hidden; background: var(--brand-dark); color: white;
-}
-
-.hero-bg {
-    position: absolute; width: 100%; height: 100%;
-    background: url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=2000') center/cover;
-    opacity: 0.3; transform: scale(1.1); animation: slowZoom 20s infinite alternate;
-}
-
-@keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
-
-.hero-content { position: relative; z-index: 10; max-width: 800px; }
-
-.badge-pill {
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-    display: inline-block; padding: 6px 16px; border-radius: 100px;
-    font-size: 0.8rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;
-}
-
-.hero h1 { font-size: 5rem; line-height: 0.9; font-weight: 800; margin-bottom: 2rem; }
-.highlight { color: var(--brand-blue); }
-
-.hero p { font-size: 1.25rem; opacity: 0.8; margin-bottom: 3rem; max-width: 600px; }
-
-.btn-primary {
-    background: var(--brand-blue); color: white; border: none;
-    padding: 18px 40px; border-radius: 12px; font-weight: 700; cursor: pointer;
-    margin-right: 15px; font-size: 1rem;
-}
-
-/* Stats Section */
-.stats {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    background: white; border-radius: 24px; padding: 3rem;
-    margin-top: -80px; position: relative; z-index: 20;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
-}
-
-.stat-item { text-align: center; border-right: 1px solid #f1f5f9; }
-.stat-item:last-child { border: none; }
-
-.stat-number { font-size: 3rem; font-weight: 800; color: var(--brand-dark); }
-.stat-label { display: block; color: var(--text-muted); font-weight: 600; }
-
-/* Grid Cards */
-.pro-card {
-    background: white; padding: 3rem; border-radius: 20px;
-    border: 1px solid #f1f5f9; transition: 0.3s;
-}
-.pro-card:hover { transform: translateY(-10px); border-color: var(--brand-blue); }
-
-.card-icon { font-size: 2rem; margin-bottom: 1.5rem; }
