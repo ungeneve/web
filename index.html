@@ -3,78 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>United Geneve | Disaster Response</title>
+    <title>United Geneve | Professional Disaster Response</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <nav class="navbar">
-        <div class="container">
+        <div class="container nav-wrapper">
             <div class="logo">
-                <div class="logo-icon">UG</div>
-                <span>UNITED <b>GENEVE</b></span>
+                <div class="logo-circle">
+                    <img src="logo.png" alt="UG" onerror="this.style.display='none'">
+                    <span>UG</span>
+                </div>
+                <div class="logo-text">UNITED <span>GENEVE</span></div>
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#mission">Mission</a></li>
-                <li><a href="#impact">Impact</a></li>
-                <li><a href="#" class="btn-emergency">Donate Now</a></li>
+                <li><a href="#about">Our Reach</a></li>
+                <li><a href="#operations">Operations</a></li>
+                <li><a href="#transparency">Transparency</a></li>
+                <li><a href="#" class="btn-cta-nav">Deploy Support</a></li>
             </ul>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content container">
-            <span class="badge">Global Emergency Network</span>
-            <h1>Responding to <br><span class="text-gradient">Disasters Globally</span></h1>
-            <p>Unified action for humanity. We provide rapid response, medical aid, and logistics support in the world's most challenging environments.</p>
-            <div class="hero-btns">
-                <a href="#mission" class="btn-primary">Our Mission</a>
-                <a href="#" class="btn-outline">Watch Operations</a>
+    <main>
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="container hero-content">
+                <div class="badge-pill">Live Updates: Operation Mediterranean Active</div>
+                <h1>Swift Action.<br><span class="highlight">Universal Relief.</span></h1>
+                <p>United Geneve is a global rapid-response network dedicated to providing medical, logistical, and humanitarian aid in the wake of catastrophic events.</p>
+                <div class="hero-actions">
+                    <button class="btn-primary">Active Missions</button>
+                    <button class="btn-secondary">Read Annual Report</button>
+                </div>
             </div>
-        </div>
-    </header>
+        </section>
 
-    <section id="impact" class="stats-section container">
-        <div class="stat-card">
-            <h3>120+</h3>
-            <p>Countries Reached</p>
-        </div>
-        <div class="stat-card">
-            <h3>2.5M</h3>
-            <p>Lives Impacted</p>
-        </div>
-        <div class="stat-card">
-            <h3>24/7</h3>
-            <p>Rapid Response</p>
-        </div>
-    </section>
+        <section class="stats container">
+            <div class="stat-item">
+                <span class="stat-number" data-target="142">0</span>
+                <span class="stat-label">Rapid Deployments</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="89">0</span>
+                <span class="stat-label">Countries Served</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="12">0</span><span class="stat-number">M</span>
+                <span class="stat-label">Lives Impacted</span>
+            </div>
+        </section>
 
-    <section id="mission" class="mission container">
-        <div class="section-title">
-            <h2>Core Capabilities</h2>
-            <p>Professional excellence in humanitarian aid.</p>
-        </div>
-        <div class="grid">
-            <div class="glass-card">
-                <div class="icon">🚑</div>
-                <h3>Medical Logistics</h3>
-                <p>Deploying advanced field hospitals and life-saving equipment within 24 hours.</p>
+        <section class="features container" id="operations">
+            <div class="section-header">
+                <h2>Our Strategic Pillars</h2>
+                <div class="line"></div>
             </div>
-            <div class="glass-card">
-                <div class="icon">🌍</div>
-                <h3>Crisis Management</h3>
-                <p>Strategic coordination with local authorities to ensure efficient aid distribution.</p>
+            <div class="grid">
+                <div class="pro-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>24h Deployment</h3>
+                    <p>Our logistical hubs are strategically positioned to reach any disaster zone within one day.</p>
+                </div>
+                <div class="pro-card">
+                    <div class="card-icon">🩺</div>
+                    <h3>Medical Support</h3>
+                    <p>Field hospitals equipped with surgical theaters and advanced trauma care units.</p>
+                </div>
+                <div class="pro-card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Crisis Strategy</h3>
+                    <p>On-the-ground intelligence and coordination with local governments for sustained recovery.</p>
+                </div>
             </div>
-            <div class="glass-card">
-                <div class="icon">📦</div>
-                <h3>Supply Chain</h3>
-                <p>Advanced global network for food, water, and shelter emergency supplies.</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
