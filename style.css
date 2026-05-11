@@ -14,3 +14,57 @@
     /* لون النص الأساسي (ليس أسود تماماً بل رمادي داكن جداً) */
     --text-main: #1e293b;
 }
+/* 1. تأثير الزجاج المطور للـ Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px) saturate(180%); /* تأثير زجاج آيفون */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* 2. تحسين تدرج الـ Hero Section */
+.hero {
+    /* تدرج لوني يدمج الصورة مع اللون الليلي لإبراز النصوص */
+    background: linear-gradient(135deg, 
+        rgba(10, 25, 47, 0.95) 0%, 
+        rgba(10, 25, 47, 0.7) 50%, 
+        transparent 100%), 
+        url('your-image.jpg');
+    background-size: cover;
+}
+
+/* 3. العناوين (Typography Gradient) */
+h1 {
+    color: #ffffff;
+    background: linear-gradient(to bottom right, #ffffff 50%, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px; /* يجعل الخط يبدو احترافياً أكثر */
+}
+
+/* 4. الكروت (Cards) بتأثير "الظل الناعم" */
+.pro-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04); /* ظل خفيف جداً وعميق */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pro-card:hover {
+    box-shadow: 0 20px 40px -10px rgba(0, 122, 255, 0.1);
+    border-color: var(--accent-blue);
+    transform: translateY(-5px);
+}
+
+/* 5. الأزرار (Neumorphic Buttons) */
+.btn-primary {
+    background: var(--accent-blue);
+    box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #0062cc;
+    box-shadow: 0 6px 20px rgba(0, 118, 255, 0.23);
+    transform: scale(1.02);
+}
