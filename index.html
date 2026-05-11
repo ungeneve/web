@@ -5,54 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>United Geneve | Disaster Response</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo-container">
-                <div class="placeholder-logo">UG</div>
-                <span class="brand-name">UNITED GENEVE</span>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">UG</div>
+                <span>UNITED <b>GENEVE</b></span>
             </div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#operations">Operations</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#" class="btn-emergency">Donate Now</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <span class="badge">Global Emergency Network</span>
+            <h1>Responding to <br><span class="text-gradient">Disasters Globally</span></h1>
+            <p>Unified action for humanity. We provide rapid response, medical aid, and logistics support in the world's most challenging environments.</p>
+            <div class="hero-btns">
+                <a href="#mission" class="btn-primary">Our Mission</a>
+                <a href="#" class="btn-outline">Watch Operations</a>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h1>For Disaster Response</h1>
-                <p>Global coordination. Immediate impact. Saving lives where it matters most.</p>
-                <button id="cta-btn">Latest Missions</button>
-            </div>
-        </section>
+    <section id="impact" class="stats-section container">
+        <div class="stat-card">
+            <h3>120+</h3>
+            <p>Countries Reached</p>
+        </div>
+        <div class="stat-card">
+            <h3>2.5M</h3>
+            <p>Lives Impacted</p>
+        </div>
+        <div class="stat-card">
+            <h3>24/7</h3>
+            <p>Rapid Response</p>
+        </div>
+    </section>
 
-        <section id="about">
-            <h2>Our Mission</h2>
-            <div class="card-container">
-                <div class="card">
-                    <h3>Rapid Deployment</h3>
-                    <p>Mobilizing specialized teams within hours of a disaster strike.</p>
-                </div>
-                <div class="card">
-                    <h3>Global Reach</h3>
-                    <p>Operating across 5 continents to provide humanitarian aid.</p>
-                </div>
-                <div class="card">
-                    <h3>Medical Support</h3>
-                    <p>Deploying emergency field hospitals and specialized medical staff.</p>
-                </div>
+    <section id="mission" class="mission container">
+        <div class="section-title">
+            <h2>Core Capabilities</h2>
+            <p>Professional excellence in humanitarian aid.</p>
+        </div>
+        <div class="grid">
+            <div class="glass-card">
+                <div class="icon">🚑</div>
+                <h3>Medical Logistics</h3>
+                <p>Deploying advanced field hospitals and life-saving equipment within 24 hours.</p>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 United Geneve for Disaster Response. All rights reserved.</p>
-    </footer>
+            <div class="glass-card">
+                <div class="icon">🌍</div>
+                <h3>Crisis Management</h3>
+                <p>Strategic coordination with local authorities to ensure efficient aid distribution.</p>
+            </div>
+            <div class="glass-card">
+                <div class="icon">📦</div>
+                <h3>Supply Chain</h3>
+                <p>Advanced global network for food, water, and shelter emergency supplies.</p>
+            </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
