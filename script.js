@@ -1,30 +1,36 @@
-// Smooth reveal animation on scroll
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.glass-card, .stat-card').forEach(el => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "all 0.6s ease-out";
-    observer.observe(el);
-});
-
-// Change Navbar background on scroll
+// 1. Navbar Scroll Effect
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.1)";
+    if (window.scrollY > 100) {
+        nav.style.padding = '0.8rem 0';
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
     } else {
-        nav.style.boxShadow = "none";
+        nav.style.padding = '1.25rem 0';
+        nav.style.background = 'rgba(255, 255, 255, 0.7)';
     }
 });
+
+// 2. Statistics Counter Animation
+const stats = document.querySelectorAll('.stat-number');
+const animateStats = () => {
+    stats.forEach(stat => {
+        const target = +stat.getAttribute('data-target');
+        const count = +stat.innerText;
+        const speed = 200; 
+        const inc = target / speed;
+
+        if (count < target) {
+            stat.innerText = Math.ceil(count + inc);
+            setTimeout(animateStats, 1);
+        } else {
+            stat.innerText = target;
+        }
+    });
+};
+
+// Trigger counter when visible
+const observer = new IntersectionObserver((entries) => {
+    if(entries[0].isIntersecting) animateStats();
+}, { threshold: 0.5 });
+
+observer.observe(document.querySelector('.stats'));
