@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أبطال الظل | تقرير اتحاد جنيف الاستقصائي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #fdfdfd; color: #1e293b; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid #e2e8f0; }
+        .tab-active { border-bottom: 3px solid #b91c1c; color: #b91c1c; font-weight: 800; }
+        .chart-container { position: relative; height: 300px; width: 100%; }
+        .urgent-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(185, 28, 28, 0); } 100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); } }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Header المطور -->
+    <header class="bg-[#0f172a] text-white py-16 px-6 relative overflow-hidden border-b-8 border-red-700">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
+            <div class="text-right">
+                <div class="inline-block bg-red-700 text-xs font-bold px-3 py-1 mb-4 rounded-full urgent-pulse">تقرير عاجل: أزمة هندسية</div>
+                <h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight">أبطال الظل: <span class="text-red-500">هندسة البقاء</span> في غزة</h1>
+                <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">توثيق تقني وقانوني لانهيار المنظومة الطبية والجهود المستحيلة للمهندسين الطبيين تحت الحصار.</p>
+            </div>
+            <div class="w-32 h-32 md:w-40 md:h-40 border-4 border-slate-700 rounded-xl flex items-center justify-center bg-slate-800/50 backdrop-blur shadow-2xl">
+                <span class="text-5xl font-black text-red-600">GU</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 glass-card border-b shadow-sm">
+        <div class="max-w-6xl mx-auto flex overflow-x-auto">
+            <button onclick="showSection('context')" id="btn-context" class="tab-btn px-8 py-5 text-sm font-bold transition-all hover:bg-slate-50">السياق الميداني</button>
+            <button onclick="showSection('data')" id="btn-data" class="tab-btn px-8 py-5 text-sm font-bold transition-all hover:bg-slate-50">تحليل البيانات</button>
+            <button onclick="showSection('legal')" id="btn-legal" class="tab-btn px-8 py-5 text-sm font-bold transition-all hover:bg-slate-50">الإطار القانوني</button>
+            <button onclick="showSection('action')" id="btn-action" class="tab-btn px-8 py-5 text-sm font-bold transition-all hover:bg-slate-50">توصيات التحرك</button>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto py-12 px-6">
+        
+        <!-- Section: Context -->
+        <section id="section-context" class="tab-content space-y-12 animate-fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-extrabold text-slate-800">ابتكار تحت القصف</h2>
+                    <p class="text-slate-600 leading-loose text-lg text-justify">
+                        يواجه المهندس الطبي في غزة تحدياً يتجاوز حدود المنطق؛ حيث يتم تحويل قطع الغيار المنزلية والأسلاك البسيطة إلى حلول برمجية وميكانيكية لإبقاء أجهزة العناية المركزة تعمل.
+                    </p>
+                    <div class="bg-red-50 border-r-4 border-red-600 p-6 italic shadow-sm">
+                        "نحن لا نقوم بالصيانة الدورية، نحن نقوم بعمليات 'إنعاش' للأجهزة المعدنية لكي لا تتوقف قلوب الأطفال." 
+                        <span class="block mt-2 font-bold text-red-800 not-italic text-sm">— المهندس أ. يحيى، مجمع ناصر الطبي</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-6 bg-white border rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-2 text-red-600">⚡</div>
+                        <h4 class="font-bold">أزمة الطاقة</h4>
+                        <p class="text-xs text-slate-500">تذبذب التيار يؤدي لاحتراق اللوحات الأم بنسبة 70%.</p>
+                    </div>
+                    <div class="p-6 bg-white border rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-2 text-red-600">🛠️</div>
+                        <h4 class="font-bold">قطع الغيار</h4>
+                        <p class="text-xs text-slate-500">منع دخول الأجزاء الدقيقة بحجة الاستخدام المزدوج.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Data -->
+        <section id="section-data" class="tab-content hidden space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-3xl border shadow-sm">
+                    <h3 class="font-bold mb-6 text-center">أسباب تعطل الأجهزة الطبية</h3>
+                    <div class="chart-container"><canvas id="chartPie"></canvas></div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border shadow-sm">
+                    <h3 class="font-bold mb-6 text-center">حالة المستشفيات (أكتوبر 23 - مايو 26)</h3>
+                    <div class="chart-container"><canvas id="chartBar"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Legal -->
+        <section id="section-legal" class="tab-content hidden">
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="group border rounded-xl p-6 hover:bg-slate-900 hover:text-white transition-all cursor-pointer shadow-sm">
+                    <span class="text-red-500 font-bold mb-2 block">المادة 18 - جنيف 4</span>
+                    <h3 class="text-xl font-bold mb-2">حماية الأعيان الطبية</h3>
+                    <p class="text-sm opacity-80 leading-relaxed">استهداف المولدات ومحطات الأكسجين هو تدمير متعمد للمقومات التقنية المحمية قانونياً.</p>
+                </div>
+                <!-- المزيد من المواد القانونية... -->
+            </div>
+        </section>
+
+        <!-- Section: Action -->
+        <section id="section-action" class="tab-content hidden text-center space-y-8">
+            <div class="bg-[#0f172a] text-white p-12 rounded-3xl shadow-2xl">
+                <h2 class="text-3xl font-black mb-6 uppercase tracking-wider">نداء التحرك العاجل</h2>
+                <div class="grid md:grid-cols-3 gap-6 text-right">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-red-500 font-bold mb-2 underline">ممرات هندسية</h4>
+                        <p class="text-sm text-slate-300">السماح بإدخال أجهزة القياس والمعايرة فوراً دون قيود أمنية.</p>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-red-500 font-bold mb-2 underline">حماية دولية</h4>
+                        <p class="text-sm text-slate-300">توفير حصانة قانونية للمهندسين الطبيين أثناء التنقل بين المستشفيات.</p>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-red-500 font-bold mb-2 underline">توثيق جنائي</h4>
+                        <p class="text-sm text-slate-300">اعتبار منع قطع الغيار الطبية أداة قتل متعمد في التقارير الجنائية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-100 border-t py-12 px-6 mt-12 text-center">
+        <p class="text-slate-500 text-sm">© 2026 اتحاد جنيف للاستجابة للكوارث | قسم التحقيقات الرقمية</p>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.tab-content').forEach(s => s.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
+            document.getElementById('section-' + id).classList.remove('hidden');
+            document.getElementById('btn-' + id).classList.add('tab-active');
+            if (id === 'data') initCharts();
+        }
+
+        function initCharts() {
+            const ctxPie = document.getElementById('chartPie').getContext('2d');
+            new Chart(ctxPie, {
+                type: 'doughnut',
+                data: {
+                    labels: ['طاقة غير مستقرة', 'نقص قطع غيار', 'استهداف مباشر', 'أعطال تقنية'],
+                    datasets: [{
+                        data: [45, 35, 15, 5],
+                        backgroundColor: ['#1e293b', '#b91c1c', '#f87171', '#e2e8f0']
+                    }]
+                },
+                options: { plugins: { legend: { position: 'bottom', rtl: true } } }
+            });
+
+            const ctxBar = document.getElementById('chartBar').getContext('2d');
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['أكتوبر', 'ديسمبر', 'مارس', 'مايو'],
+                    datasets: [{
+                        label: 'مستشفيات خارج الخدمة',
+                        data: [5, 18, 28, 31],
+                        backgroundColor: '#b91c1c'
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { rtl: true } } }
+            });
+        }
+        
+        // التشغيل الافتراضي
+        showSection('context');
+    </script>
+</body>
+</html>
