@@ -3,373 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة الإدارة المركزية | UNGDR</title>
-    <!-- تضمين مكتبة Tailwind CSS -->
+    <title>UNGDR | لوحة التحكم الشاملة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        navyDark: '#0A192F', // الأزرق الملكي الداكن الرسمي
-                        deepRed: '#A61C1C',  // الأحمر القاني للتمييز
+                        navyDark: '#0A192F',
+                        deepRed: '#A61C1C',
                         pureWhite: '#FFFFFF'
                     }
                 }
             }
         }
     </script>
-    <!-- استيراد خط القاهرة الاحترافي -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Cairo', sans-serif; }
-        .tab-active { border-bottom-color: #A61C1C; color: #0A192F; font-weight: 700; }
+        .tab-active { border-bottom: 3px solid #A61C1C; color: #0A192F; font-weight: bold; }
+        @page { size: A4; margin: 15mm; }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen relative overflow-x-hidden">
+<body class="bg-gray-50 min-h-screen">
 
-    <!-- الحواف الهندسية الحادة المتقاطعة المستوحاة من الهوية الرسمية -->
-    <div class="absolute top-0 right-0 w-40 h-40 bg-deepRed transform translate-x-16 -translate-y-16 rotate-45 z-0 opacity-10"></div>
-    <div class="absolute top-0 right-0 w-80 h-80 bg-navyDark transform translate-x-20 -translate-y-32 rotate-45 z-0 opacity-10"></div>
-
-    <!-- ==================== 1. صفحة الدخول (Login Section) ==================== -->
-    <div id="loginSection" class="min-h-screen flex items-center justify-center relative z-10 px-4">
+    <!-- نظام تسجيل الدخول (Login System) -->
+    <div id="loginSection" class="min-h-screen flex items-center justify-center p-4">
         <div class="w-full max-w-md bg-white rounded-xl shadow-2xl overflow-hidden border-t-4 border-deepRed">
             <div class="p-8">
-                <div class="text-center mb-8">
-                    <img src="logo.png" alt="logo.png" class="mx-auto h-24 w-auto mb-3 object-contain">
-                    <h2 class="text-2xl font-bold text-navyDark">بوابة الإدارة المركزية</h2>
-                    <p class="text-xs text-gray-400 mt-1 tracking-widest uppercase">UNGDR Central Admin Portal</p>
+                <div class="text-center mb-6">
+                    <img src="logo.png alt="Logo" class="mx-auto h-20 mb-4">
+                    <h2 class="text-2xl font-bold text-navyDark">دخول منظومة UNGDR</h2>
+                    <p class="text-sm text-gray-500">لوحة التحكم الإدارية المركزية</p>
                 </div>
-
-                <div id="errorMessage" class="hidden mb-4 p-3 bg-red-100 text-deepRed text-sm rounded-lg text-center font-bold border border-red-200">
-                خطأ: اسم المستخدم أو كلمة المرور غير صحيحة!
-            </div>
-
-                <form onsubmit="executeLogin(event)" class="space-y-5">
-                    <div>
-                        <label class="block text-sm font-semibold text-navyDark mb-1">الاسم المستخدم</label>
-                        <input type="text" id="username" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-navyDark focus:border-transparent outline-none text-left" placeholder="admin_ungdr">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-navyDark mb-1">كلمة المرور</label>
-                        <input type="password" id="password" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-navyDark focus:border-transparent outline-none text-left" placeholder="••••••••">
-                    </div>
-                    <button type="submit" class="w-full bg-navyDark hover:bg-opacity-90 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md transform hover:-translate-y-0.5">
-                        تسجيل دخول آمن
-                    </button>
+                <div id="loginError" class="hidden mb-4 p-3 bg-red-100 text-red-700 text-sm rounded text-center">خطأ في البيانات!</div>
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <input type="text" id="username" placeholder="اسم المستخدم" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-navyDark outline-none" required>
+                    <input type="password" id="password" placeholder="كلمة المرور" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-navyDark outline-none" required>
+                    <button type="submit" class="w-full bg-navyDark text-white py-3 rounded font-bold hover:bg-opacity-90 transition">دخول النظام</button>
                 </form>
-            </div>
-            <div class="bg-gray-50 px-8 py-4 text-center border-t border-gray-100 text-xs text-gray-400">
-                نظام مشفر خاص بموظفي اتحاد جنيف للاستجابة للكوارث © 2026
             </div>
         </div>
     </div>
 
-    <!-- ==================== 2. لوحة التحكم الإدارية (Dashboard Section) ==================== -->
-    <div id="dashboardSection" class="hidden min-h-screen flex flex-col relative z-10">
-        <!-- الهيدر الإداري الأعلى -->
-        <header class="bg-navyDark text-white shadow-md px-6 py-4 flex justify-between items-center border-b-4 border-deepRed">
-            <div class="flex items-center space-x-4 space-x-reverse">
-                <img src="logo.jpg" alt="logo.jpg" class="h-12 w-auto bg-white p-1 rounded-full">
-                <div>
-                    <h1 class="text-lg font-bold tracking-wide">لوحة التحكم الإدارية الشاملة</h1>
-                    <p class="text-xs text-gray-300 uppercase">UNGDR Administrative ERP v2.0</p>
-                </div>
+    <!-- لوحة التحكم (Dashboard Section) -->
+    <div id="dashboardSection" class="hidden flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-navyDark text-white p-4 flex justify-between items-center shadow-md">
+            <div class="flex items-center gap-3">
+                <img src="logo.jpg" alt="Logo" class="h-10 bg-white p-1 rounded">
+                <h1 class="text-lg font-bold">لوحة الإدارة الشاملة | UNGDR</h1>
             </div>
-            <div class="flex items-center space-x-4 space-x-reverse">
-                <span class="text-sm bg-white bg-opacity-10 px-4 py-2 rounded-lg border border-gray-600 hidden md:inline">
-                    المستخدم النشط: <strong class="text-red-400" id="userDisplay">المدير الإداري</strong>
-                </span>
-                <button onclick="executeLogout()" class="bg-deepRed hover:bg-opacity-90 text-white text-sm font-semibold py-2 px-4 rounded-lg transition">
-                    خروج
-                </button>
+            <div class="flex items-center gap-4">
+                <span id="userGreeting" class="text-sm font-semibold"></span>
+                <button onclick="location.reload()" class="bg-deepRed px-3 py-1 rounded text-sm hover:bg-opacity-80">خروج</button>
             </div>
         </header>
 
-        <!-- شريط التبويب الرئيسي للتنقل بين الأقسام الثلاثة المطلوبة -->
-        <nav class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-30">
-            <div class="max-w-7xl mx-auto px-6 flex space-x-8 space-x-reverse text-sm font-medium">
-                <button onclick="switchTab('volunteersTab')" id="btn-volunteersTab" class="py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-navyDark transition tab-active">
-                    إدارة المتطوعين الميدانيين
-                </button>
-                <button onclick="switchTab('applicantsTab')" id="btn-applicantsTab" class="py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-navyDark transition relative">
-                    طلبات المتقدمين قيد الانتظار
-                    <span id="badgeCount" class="absolute top-2 -left-3 bg-deepRed text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">2</span>
-                </button>
-                <button onclick="switchTab('hrTab')" id="btn-hrTab" class="py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-navyDark transition">
-                    ملفات شؤون الموظفين (DB)
-                </button>
+        <!-- Navigation Tabs -->
+        <nav class="bg-white border-b overflow-x-auto whitespace-nowrap">
+            <div class="max-w-7xl mx-auto px-4 flex gap-6 text-sm">
+                <button onclick="showTab('volunteers')" id="btn-volunteers" class="py-4 px-2 tab-active">إدارة المتطوعين</button>
+                <button onclick="showTab('reports')" id="btn-reports" class="py-4 px-2 text-gray-500">التقارير الميدانية</button>
+                <button onclick="showTab('pending')" id="btn-pending" class="py-4 px-2 text-gray-500">طلبات قيد الانتظار</button>
+                <button onclick="showTab('finance')" id="btn-finance" class="py-4 px-2 text-gray-500">الشؤون الإدارية والمالية</button>
             </div>
         </nav>
 
-        <!-- المحتوى المركزي للقوائم والبيانات -->
+        <!-- Main Content -->
         <main class="flex-1 p-6 max-w-7xl mx-auto w-full">
             
-            <!-- أ. قسم إدارة المتطوعين -->
-            <div id="volunteersTab" class="tab-content space-y-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <h3 class="text-xl font-bold text-navyDark mb-2">منظومة المتطوعين الدولية</h3>
-                    <p class="text-sm text-gray-500">متابعة وتوزيع الكوادر التطوعية المسجلة حالياً في قطاعات الاستجابة الإنسانية.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- متطوع 1 -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-3">
-                                <span class="text-xs bg-green-100 text-green-700 font-bold px-2.5 py-1 rounded-full">نشط بالميدان</span>
-                                <span class="text-xs text-gray-400">ID: #VOL-882</span>
-                            </div>
-                            <h4 class="font-bold text-navyDark text-lg mb-1">أحمد المنصوري</h4>
-                            <p class="text-sm text-gray-600 mb-2">التخصص: الإسعافات الأولية والإنقاذ المتقدم</p>
-                            <p class="text-xs text-gray-500">النطاق الجغرافي: جنيف الشرقية</p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-gray-100 text-left">
-                            <span class="text-xs font-semibold text-navyDark bg-gray-100 px-2 py-1 rounded">فريق ألفا الميداني</span>
-                        </div>
-                    </div>
-                    <!-- متطوع 2 -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-3">
-                                <span class="text-xs bg-orange-100 text-orange-700 font-bold px-2.5 py-1 rounded-full">في وضع الاستعداد</span>
-                                <span class="text-xs text-gray-400">ID: #VOL-411</span>
-                            </div>
-                            <h4 class="font-bold text-navyDark text-lg mb-1">سارة ديبوا</h4>
-                            <p class="text-sm text-gray-600 mb-2">التخصص: الدعم النفسي واللوجستي الإغاثي</p>
-                            <p class="text-xs text-gray-500">النطاق الجغرافي: المقر المركزي</p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-gray-100 text-left">
-                            <span class="text-xs font-semibold text-navyDark bg-gray-100 px-2 py-1 rounded">فريق الدعم العام</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ب. قسم طلبات المتقدمين قيد الانتظار -->
-            <div id="applicantsTab" class="tab-content space-y-6 hidden">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <h3 class="text-xl font-bold text-navyDark mb-2">طلبات الانضمام الجديدة لمراجعة الإدارة</h3>
-                    <p class="text-sm text-gray-500">طلبات معلقة تحتاج إلى فحص وتدقيق من شؤون الموظفين لاعتمادها بالميدان.</p>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <!-- قسم المتطوعين -->
+            <div id="tab-volunteers" class="tab-content space-y-4">
+                <h3 class="text-xl font-bold text-navyDark">قاعدة بيانات المتطوعين النشطين</h3>
+                <div class="bg-white rounded-lg shadow overflow-hidden">
                     <table class="w-full text-right text-sm">
                         <thead class="bg-gray-100 text-navyDark font-bold">
-                            <tr class="border-b border-gray-200">
-                                <th class="p-4">اسم المتقدم</th>
-                                <th class="p-4">المؤهلات والخبرة</th>
-                                <th class="p-4 text-center">القرارات الإدارية</th>
+                            <tr>
+                                <th class="p-3">الاسم</th>
+                                <th class="p-3">التخصص</th>
+                                <th class="p-3">الموقع</th>
+                                <th class="p-3">الحالة</th>
                             </tr>
                         </thead>
-                        <tbody id="applicantsBody" class="divide-y divide-gray-200 text-gray-600">
-                            <tr id="row-app1">
-                                <td class="p-4 font-bold text-navyDark">د. خالد الهاشمي</td>
-                                <td class="p-4">طب طوارئ - خبرة 5 سنوات في مناطق النزاع والأزمات الطبيعية.</td>
-                                <td class="p-4 text-center space-x-2 space-x-reverse">
-                                    <button onclick="resolveApplicant('row-app1', true)" class="bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-1.5 px-3 rounded shadow">قبول الطلب</button>
-                                    <button onclick="resolveApplicant('row-app1', false)" class="bg-deepRed hover:bg-opacity-90 text-white text-xs font-bold py-1.5 px-3 rounded shadow">رفض</button>
-                                </td>
-                            </tr>
-                            <tr id="row-app2">
-                                <td class="p-4 font-bold text-navyDark">ياسمين ميركير</td>
-                                <td class="p-4">هندسة اتصالات لاسلكية - متخصصة في بناء الشبكات الطارئة.</td>
-                                <td class="p-4 text-center space-x-2 space-x-reverse">
-                                    <button onclick="resolveApplicant('row-app2', true)" class="bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-1.5 px-3 rounded shadow">قبول الطلب</button>
-                                    <button onclick="resolveApplicant('row-app2', false)" class="bg-deepRed hover:bg-opacity-90 text-white text-xs font-bold py-1.5 px-3 rounded shadow">رفض</button>
-                                </td>
-                            </tr>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr><td class="p-3">سارة أحمد</td><td class="p-3">إسعاف أولي</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-green-600">نشط</td></tr>
+                            <tr><td class="p-3">محمد علي</td><td class="p-3">لوجستيات</td><td class="p-3">المخازن المركزية</td><td class="p-3 text-green-600">نشط</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- ج. قسم شؤون الموظفين وقاعدة البيانات -->
-            <div id="hrTab" class="tab-content space-y-6 hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- نموذج إضافة موظف جديد -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-fit">
-                        <h4 class="font-bold text-navyDark text-lg mb-4 pb-2 border-b border-gray-100">تسجيل ملف موظف جديد بالـ DB</h4>
-                        <form onsubmit="addEmployee(event)" class="space-y-4">
-                            <div>
-                                <label class="block text-xs font-bold text-gray-600 mb-1">الاسم الكامل</label>
-                                <input type="text" id="empName" required class="w-full text-xs px-3 py-2 rounded border border-gray-300 outline-none focus:ring-1 focus:ring-navyDark">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-gray-600 mb-1">المسمى الوظيفي</label>
-                                <input type="text" id="empRole" required class="w-full text-xs px-3 py-2 rounded border border-gray-300 outline-none focus:ring-1 focus:ring-navyDark" placeholder="مثال: منسق عمليات">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-gray-600 mb-1">الإدارة / القسم</label>
-                                <input type="text" id="empDept" required class="w-full text-xs px-3 py-2 rounded border border-gray-300 outline-none focus:ring-1 focus:ring-navyDark" placeholder="مثال: إدارة المخاطر">
-                            </div>
-                            <button type="submit" class="w-full bg-deepRed hover:bg-opacity-90 text-white text-xs font-bold py-2 rounded shadow transition">
-                                حقن وتخزين في قاعدة البيانات
-                            </button>
-                        </form>
+            <!-- قسم التقارير -->
+            <div id="tab-reports" class="tab-content hidden space-y-4">
+                <h3 class="text-xl font-bold text-navyDark">تقارير الاستجابة للكوارث</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-white border-r-4 border-deepRed shadow rounded">
+                        <h4 class="font-bold">تقرير زلزال المنطقة الشمالية</h4>
+                        <p class="text-xs text-gray-500">تاريخ: 2026-05-10</p>
+                        <button class="mt-2 text-deepRed text-xs font-bold underline">تحميل PDF</button>
                     </div>
+                </div>
+            </div>
 
-                    <!-- عرض سجلات الموظفين الحالية -->
-                    <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                        <div class="p-4 bg-navyDark text-white font-bold text-sm">
-                            قاعدة البيانات النشطة لشؤون الموظفين الإداريين
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-right text-sm">
-                                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-200">
-                                    <tr>
-                                        <th class="p-3">كود الموظف</th>
-                                        <th class="p-3">الاسم</th>
-                                        <th class="p-3">الوظيفة</th>
-                                        <th class="p-3">القسم</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="employeeTableBody" class="divide-y divide-gray-100 text-gray-600 text-xs">
-                                    <tr>
-                                        <td class="p-3 font-mono text-gray-400">#EMP-2026-01</td>
-                                        <td class="p-3 font-bold text-navyDark">مارك لوران</td>
-                                        <td class="p-3">رئيس قطاع التخطيط الإداري</td>
-                                        <td class="p-3">الأمانة العامة للاتحاد</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-3 font-mono text-gray-400">#EMP-2026-02</td>
-                                        <td class="p-3 font-bold text-navyDark">فاطمة الزهراء</td>
-                                        <td class="p-3">مديرة النظم والمعلومات الرقمية</td>
-                                        <td class="p-3">إدارة الـ IT والاتصالات</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+            <!-- قسم طلبات الانتظار -->
+            <div id="tab-pending" class="tab-content hidden space-y-4">
+                <h3 class="text-xl font-bold text-navyDark">طلبات التطوع الجديدة (قيد المراجعة)</h3>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex justify-between items-center border-b py-2">
+                        <span>خالد منصور - مهندس اتصالات</span>
+                        <div class="space-x-2 space-x-reverse">
+                            <button class="bg-green-600 text-white px-2 py-1 rounded text-xs">قبول</button>
+                            <button class="bg-red-600 text-white px-2 py-1 rounded text-xs">رفض</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- دمج الصورة الجماعية لفريق العمل والكوادر المتطوعة للمنظمة أسفل شؤون الموظفين كمرجع ملهم للهوية البصرية -->
-                <div class="mt-8 bg-white p-6 rounded-xl shadow-sm border border-gray-200 max-w-4xl mx-auto">
-                    <h4 class="font-bold text-navyDark text-center mb-4 text-lg">الكوادر الإدارية والميدانية الحاضنة للمنظمة | GENEVE IN ACTION</h4>
-                    <img src="Geneve in Action.jpg" alt="Geneve in Action" class="rounded-xl w-full h-80 object-cover shadow-md border-2 border-navyDark">
+            <!-- الشؤون الإدارية والمالية -->
+            <div id="tab-finance" class="tab-content hidden space-y-4">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="p-4 bg-navyDark text-white rounded shadow text-center">
+                        <p class="text-sm">إجمالي الميزانية المرصودة</p>
+                        <p class="text-2xl font-bold">500,000 $</p>
+                    </div>
+                    <div class="p-4 bg-white border rounded shadow lg:col-span-2">
+                        <h4 class="font-bold mb-3 border-b pb-2">سجل المصاريف الإدارية</h4>
+                        <p class="text-sm text-gray-600">شراء معدات ميدانية: 15,000 $</p>
+                        <p class="text-sm text-gray-600">رواتب الكادر الأساسي: 45,000 $</p>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- ==================== 3. الكود البرمجي التفاعلي (JavaScript Logic) ==================== -->
     <script>
-        // دالة التحكم في عملية تسجيل الدخول المحاكية
-        function executeLogin(event) {
-            event.preventDefault();
-            const user = document.getElementById('username').value.trim();
-            const pass = document.getElementById('password').value;
-            const errBox = document.getElementById('loginError');
+        const users = {
+            "arwa": "123",
+            "abd": "456",
+            "hatem": "789"
+        };
 
-            if(user !== "" && pass !== "") {
-                errBox.classList.add('hidden');
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            const err = document.getElementById('loginError');
+
+            if (users[u] && users[u] === p) {
                 document.getElementById('loginSection').classList.add('hidden');
                 document.getElementById('dashboardSection').classList.remove('hidden');
-                document.getElementById('userDisplay').innerText = user;
+                document.getElementById('userGreeting').innerText = "مرحباً، " + u;
             } else {
-                errBox.classList.remove('hidden');
+                err.classList.remove('hidden');
             }
         }
 
-        function executeLogout() {
-            document.getElementById('dashboardSection').classList.add('hidden');
-            document.getElementById('loginSection').classList.remove('hidden');
-        }
+        function showTab(tabId) {
+            // إخفاء الكل
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.querySelectorAll('nav button').forEach(b => {
+                b.classList.remove('tab-active');
+                b.classList.add('text-gray-500');
+            });
 
-        // دالة التنقل بين التبويبات (Tabs) الإدارية بسلاسة
-        function switchTab(tabId) {
-            // إخفاء كل المحتويات أولاً
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.add('hidden'));
-            
-            // إلغاء تفعيل كافة الأزرار بصرياً
-            const buttons = document.querySelectorAll('nav button');
-            buttons.forEach(btn => btn.classList.remove('tab-active'));
-
-            // إظهار التبويب المحدد وتفعيل زره
-            document.getElementById(tabId).classList.remove('hidden');
+            // إظهار المحدد
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
             document.getElementById('btn-' + tabId).classList.add('tab-active');
-        }
-
-        // دالة معالجة المتقدمين (قبول / رفض) وتحديث العداد حيّاً
-        let count = 2;
-        function resolveApplicant(rowId, isAccepted) {
-            const row = document.getElementById(rowId);
-            if(isAccepted) {
-                alert("تمت الموافقة على طلب المتقدم بنجاح وتحويله إلى كشوفات التدريب الميداني.");
-            } else {
-                alert("تم رفض الطلب وأرشفته في سجلات الحفظ.");
-            }
-            row.remove();
-            count--;
-            const badge = document.getElementById('badgeCount');
-            if(count > 0) {
-                badge.innerText = count;
-            } else {
-                badge.classList.add('hidden');
-            }
-        }
-
-        // دالة إضافة موظف جديد ديناميكياً إلى كشوفات الـ DB في الواجهة
-        let empCounter = 3;
-        function addEmployee(event) {
-            event.preventDefault();
-            const name = document.getElementById('empName').value.trim();
-            const role = document.getElementById('empRole').value.trim();
-            const dept = document.getElementById('empDept').value.trim();
-
-            const tableBody = document.getElementById('employeeTableBody');
-            const newRow = document.createElement('tr');
-            newRow.className = "divide-y divide-gray-100 text-gray-600 text-xs bg-yellow-50 transition-all duration-500";
-            
-            newRow.innerHTML = `
-                <td class="p-3 font-mono text-gray-400">#EMP-2026-0${empCounter}</td>
-                <td class="p-3 font-bold text-navyDark">${name}</td>
-                <td class="p-3">${role}</td>
-                <td class="p-3">${dept}</td>
-            `;
-
-            tableBody.appendChild(newRow);
-            empCounter++;
-
-            // إعادة ضبط النموذج
-            document.getElementById('empName').value = '';
-            document.getElementById('empRole').value = '';
-            document.getElementById('empDept').value = '';
+            document.getElementById('btn-' + tabId).classList.remove('text-gray-500');
         }
     </script>
-
-
-    <script>
-        // تعريف مستخدمي النظام المعتمدين (قاعدة بيانات مصغرة)
-        const authorizedUsers = [
-            { user: "arwa", pass: "123", role: "أروى أبوقادوس" },
-            { user: "hr", pass: "456", role: "مدير شؤون الموظفين" },
-            { user: "v", pass: "ab12", role: "منسق المتطوعين" }
-        ];
-
-        function validateAccess(event) {
-            event.preventDefault();
-            
-            const enteredUser = document.getElementById('userInput').value;
-            const enteredPass = document.getElementById('passInput').value;
-            const errorDiv = document.getElementById('errorMessage');
-
-            // البحث عن المستخدم في القائمة
-            const account = authorizedUsers.find(u => u.user === enteredUser && u.pass === enteredPass);
-
-            if (account) {
-                errorDiv.classList.add('hidden');
-                alert(`تم التحقق بنجاح. مرحباً بك يا ${account.role}`);
-                // التوجيه لصفحة لوحة التحكم
-                window.location.href = "dashboard.html";
-            } else {
-                // إظهار رسالة الخطأ
-                errorDiv.classList.remove('hidden');
-                // مسح حقل كلمة المرور فقط للأمان
-                document.getElementById('passInput').value = "";
-            }
-        }
-    </script>
-
 </body>
 </html>
