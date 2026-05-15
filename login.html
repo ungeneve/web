@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNGDR | لوحة التحكم الشاملة</title>
+    <title>UNGDR | الإدارة المركزية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -33,14 +33,14 @@
             <div class="p-8">
                 <div class="text-center mb-6">
                     <img src="logo.png" alt="Logo" class="mx-auto h-20 mb-4">
-                    <h2 class="text-2xl font-bold text-navyDark">دخول منظومة UNGDR</h2>
-                    <p class="text-sm text-gray-500">لوحة التحكم الإدارية المركزية</p>
+                    <h2 class="text-2xl font-bold text-navyDark">بوابة الإدارة المركزية</h2>
+                    <p class="text-sm text-gray-500">UNGDR Admin & Delegation Portal</p>
                 </div>
-                <div id="loginError" class="hidden mb-4 p-3 bg-red-100 text-red-700 text-sm rounded text-center">خطأ في البيانات!</div>
+                <div id="loginError" class="hidden mb-4 p-3 bg-red-100 text-red-700 text-sm rounded text-center">خطأ في اسم المستخدم أو كلمة المرور!</div>
                 <form onsubmit="handleLogin(event)" class="space-y-4">
                     <input type="text" id="username" placeholder="اسم المستخدم" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-navyDark outline-none" required>
                     <input type="password" id="password" placeholder="كلمة المرور" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-navyDark outline-none" required>
-                    <button type="submit" class="w-full bg-navyDark text-white py-3 rounded font-bold hover:bg-opacity-90 transition">دخول النظام</button>
+                    <button type="submit" class="w-full bg-navyDark text-white py-3 rounded font-bold hover:bg-opacity-90 transition">تسجيل الدخول</button>
                 </form>
             </div>
         </div>
@@ -52,7 +52,7 @@
         <header class="bg-navyDark text-white p-4 flex justify-between items-center shadow-md">
             <div class="flex items-center gap-3">
                 <img src="logo.jpg" alt="Logo" class="h-10 bg-white p-1 rounded">
-                <h1 class="text-lg font-bold">لوحة الإدارة الشاملة | UNGDR</h1>
+                <h1 class="text-lg font-bold">لوحة الإدارة | UNGDR</h1>
             </div>
             <div class="flex items-center gap-4">
                 <span id="userGreeting" class="text-sm font-semibold"></span>
