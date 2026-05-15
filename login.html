@@ -64,7 +64,7 @@
         <nav class="bg-white border-b overflow-x-auto whitespace-nowrap">
             <div class="max-w-7xl mx-auto px-4 flex gap-6 text-sm">
                 <button onclick="showTab('volunteers')" id="btn-volunteers" class="py-4 px-2 tab-active">إدارة المتطوعين</button>
-                <button onclick="showTab('reports')" id="btn-reports" class="py-4 px-2 text-gray-500">التقارير الميدانية</button>
+                <button onclick="showTab('documents')" id="btn-reports" class="py-4 px-2 text-gray-500">وثائق</button>
                 <button onclick="showTab('pending')" id="btn-pending" class="py-4 px-2 text-gray-500">طلبات قيد الانتظار</button>
                 <button onclick="showTab('finance')" id="btn-finance" class="py-4 px-2 text-gray-500">الشؤون الإدارية والمالية</button>
             </div>
@@ -75,7 +75,7 @@
             
             <!-- قسم المتطوعين -->
             <div id="tab-volunteers" class="tab-content space-y-4">
-                <h3 class="text-xl font-bold text-navyDark">قاعدة بيانات المتطوعين النشطين</h3>
+                <h3 class="text-xl font-bold text-navyDark">قاعدة بيانات المتطوعين</h3>
                 <div class="bg-white rounded-lg shadow overflow-hidden">
                     <table class="w-full text-right text-sm">
                         <thead class="bg-gray-100 text-navyDark font-bold">
@@ -87,8 +87,20 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
-                            <tr><td class="p-3">سارة أحمد</td><td class="p-3">إسعاف أولي</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-green-600">نشط</td></tr>
-                            <tr><td class="p-3">محمد علي</td><td class="p-3">لوجستيات</td><td class="p-3">المخازن المركزية</td><td class="p-3 text-green-600">نشط</td></tr>
+                            <tr><td class="p-3">أروى أبوقادوس</td><td class="p-3">تمريض عام</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-green-600">نشط</td></tr>
+                            <tr><td class="p-3">حاتم أبوالقمبز</td><td class="p-3">تمريض عام</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-green-600">نشط</td></tr>
+                            <tr><td class="p-3">أنوار الأستاذ</td><td class="p-3">تمريض عام</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-green-600">نشط</td></tr>
+                            <tr><td class="p-3">يزن حماد</td><td class="p-3">برمجيات</td><td class="p-3">مكتب الإعلام</td><td class="p-3 text-green-600">نشط</td></tr>
+                            <tr><td class="p-3">صفاء نادية</td><td class="p-3">تمريض عام</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-orange-600">موقوف</td></tr>
+                            <tr><td class="p-3">إسراء عقل</td><td class="p-3">تمريض عام</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-orange-600">موقوف</td></tr>
+                            <tr><td class="p-3">لما أبودلال</td><td class="p-3">علاقات دولية</td><td class="p-3">مفوض</td><td class="p-3 text-red-600">غير نشط</td></tr>
+                            <tr><td class="p-3">ريهام الفراني</td><td class="p-3">إسعاف أولي</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-red-600">غير نشط</td></tr>
+                            <tr><td class="p-3">جميلة أهل</td><td class="p-3">سكرتارية</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-green-600">نشط</td></tr>
+                            <tr><td class="p-3">ديانا الإفرنجي</td><td class="p-3">تمريض عام</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-orange-600">موقوف</td></tr>
+                            <tr><td class="p-3">أمل حلاوة</td><td class="p-3">سكرتارية</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-orange-600">موقوف</td></tr>
+                            <tr><td class="p-3">أية حلاوة</td><td class="p-3">سكرتارية</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-red-600">غير نشط</td></tr>
+                            <tr><td class="p-3">ريم العمصي</td><td class="p-3">سكرتارية</td><td class="p-3">مكتب إدارة</td><td class="p-3 text-red-600">غير نشط</td></tr>
+                            <tr><td class="p-3">لما المقيد</td><td class="p-3">تمريض عام</td><td class="p-3">ميدان جنيف</td><td class="p-3 text-orange-600">موقوف</td></tr>
                         </tbody>
                     </table>
                 </div>
